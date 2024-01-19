@@ -22,3 +22,6 @@ go.work
 
 # The binary itself
 tomatotea
+
+# editor cfg
+.vscode
