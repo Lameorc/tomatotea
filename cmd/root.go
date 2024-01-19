@@ -57,7 +57,9 @@ func init() {
 	rootCmd.Flags().DurationP("work-duration", "w", workDefault, "duration of the work period")
 	rootCmd.Flags().DurationP("break-duration", "b", breakDefault, "duration of the standard break between work sessions")
 	rootCmd.Flags().DurationP("rest-duration", "r", restDefault, "duration of the period between a set of intervals")
-	viper.BindPFlags(rootCmd.Flags())
+	if err := viper.BindPFlags(rootCmd.Flags()); err != nil {
+		panic("failed to bind pflags to viper")
+	}
 }
 
 // initConfig reads in config file and ENV variables if set.
