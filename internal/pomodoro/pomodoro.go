@@ -2,7 +2,6 @@ package pomodoro
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/Lameorc/tomatotea/internal/types"
 )
@@ -11,14 +10,6 @@ type interval int
 
 const (
 	maxIntervals interval = 4
-
-	workTime     = 25 * time.Minute
-	breakTime    = 5 * time.Minute
-	bigBreakTime = 15 * time.Minute
-	// NOTE: debug values
-	// breakTime = 2 * time.Second
-	// workTime = 5 * time.Second
-	// bigBreakTime           = 3 * time.Second
 )
 
 type pomodoro struct {
