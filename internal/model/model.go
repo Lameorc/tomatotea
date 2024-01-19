@@ -12,18 +12,18 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-type Model struct {
+type pomodoroModel struct {
 	pomodoro      types.Pomodoro
 	time          timer.Model
 	roundsElapsed int
 	cfg           *config.DurationConfig
 }
 
-func (m *Model) onLongBreak() bool {
+func (m *pomodoroModel) onLongBreak() bool {
 	return m.pomodoro.State() == types.LongBreak
 }
 
-func (m *Model) timeoutReached() {
+func (m *pomodoroModel) timeoutReached() {
 	m.pomodoro.Advance()
 
 	var timeout time.Duration
@@ -40,7 +40,7 @@ func (m *Model) timeoutReached() {
 }
 
 // Update implements tea.Model.
-func (m *Model) Update(tm tea.Msg) (tea.Model, tea.Cmd) {
+func (m *pomodoroModel) Update(tm tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := tm.(type) {
 	case timer.TickMsg:
 		var cmd tea.Cmd
@@ -66,7 +66,7 @@ func (m *Model) Update(tm tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 // View implements tea.Model.
-func (m *Model) View() string {
+func (m *pomodoroModel) View() string {
 	// header
 	s := "🍅: "
 	s += m.pomodoro.String()
@@ -81,14 +81,14 @@ func (m *Model) View() string {
 }
 
 // Init implements tea.Model
-func (m *Model) Init() tea.Cmd {
+func (m *pomodoroModel) Init() tea.Cmd {
 	return m.time.Init()
 }
 
-var _ tea.Model = (*Model)(nil)
+var _ tea.Model = (*pomodoroModel)(nil)
 
-func newModel(c *config.DurationConfig, t timer.Model) *Model {
-	return &Model{
+func newModel(c *config.DurationConfig, t timer.Model) *pomodoroModel {
+	return &pomodoroModel{
 		pomodoro:      pomodoro.New(),
 		time:          t,
 		roundsElapsed: 0,
