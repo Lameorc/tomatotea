@@ -19,10 +19,6 @@ type pomodoroModel struct {
 	cfg           *config.DurationConfig
 }
 
-func (m *pomodoroModel) onLongBreak() bool {
-	return m.pomodoro.State() == types.LongBreak
-}
-
 func (m *pomodoroModel) timeoutReached() {
 	m.pomodoro.Advance()
 
