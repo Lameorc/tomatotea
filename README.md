@@ -17,8 +17,8 @@ go build
 which will result in `tomatotea` binary present in the current working directory.
 
 ## Usage
-The interface is very simple, simply run the binary (`tomatotea`) and watch the pomodoro intervals
-go by!
+The application itself is instrumented with [cobra](https://github.com/spf13/cobra). For help
+see `tomatotea -h`
 
 ## Contributing
 While not strictly prohibited, code contributions are discouraged as this is intended as more
